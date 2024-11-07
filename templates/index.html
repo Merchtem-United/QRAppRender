@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merchtem United - QR Codes</title>
+    <style>
+        /* Basisstijl voor de knoppen en layout */
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 400px;
+            margin: auto;
+        }
+        button {
+            width: 70px;
+            height: 70px;
+            margin: 5px;
+            font-size: 18px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #qr-code {
+            display: none;
+            margin-top: 20px;
+        }
+        #qr-code img {
+            max-width: 200px;
+        }
+        .back-button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .amount-label {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .button-large {
+            width: 150px; /* INKOM knop twee keer zo breed */
+        }
+    </style>
+</head>
+<body>
+    <h1>Merchtem United</h1>
+
+    <div class="button-container" id="amounts">
+        <!-- Knoppen voor bedragen 1 t/m 25 met euro teken -->
+        <button onclick="showQR('1€')">1€</button>
+        <button onclick="showQR('2€')">2€</button>
+        <button onclick="showQR('3€')">3€</button>
+        <button onclick="showQR('4€')">4€</button>
+        <button onclick="showQR('5€')">5€</button>
+        <button onclick="showQR('6€')">6€</button>
+        <button onclick="showQR('7€')">7€</button>
+        <button onclick="showQR('8€')">8€</button>
+        <button onclick="showQR('9€')">9€</button>
+        <button onclick="showQR('10€')">10€</button>
+        <button onclick="showQR('11€')">11€</button>
+        <button onclick="showQR('12€')">12€</button>
+        <button onclick="showQR('13€')">13€</button>
+        <button onclick="showQR('14€')">14€</button>
+        <button onclick="showQR('15€')">15€</button>
+        <button onclick="showQR('16€')">16€</button>
+        <button onclick="showQR('17€')">17€</button>
+        <button onclick="showQR('18€')">18€</button>
+        <button onclick="showQR('19€')">19€</button>
+        <button onclick="showQR('20€')">20€</button>
+        <button onclick="showQR('21€')">21€</button>
+        <button onclick="showQR('22€')">22€</button>
+        <button onclick="showQR('23€')">23€</button>
+        <button onclick="showQR('24€')">24€</button>
+        <button onclick="showQR('25€')" style="margin-right: auto;">25€</button> <!-- Knop 25 naar links -->
+
+        <!-- Inkom knop groter -->
+        <button onclick="showQR('inkom')" class="button-large">INKOM</button>
+    </div>
+    
+    <div id="qr-code">
+        <h2>QR Code</h2>
+        <img id="qr-image" src="" alt="QR Code">
+        <div class="amount-label" id="amount-label"></div>
+        <button class="back-button" onclick="backToHome()">Terug</button>
+    </div>
+    
+    <script>
+        // Functie om de juiste QR-code afbeelding te tonen en bedrag weer te geven
+        function showQR(amount) {
+            let imagePath = `/static/${amount}.png`;
+            document.getElementById("qr-image").src = imagePath;
+
+            // Toon het bedrag onder de QR-code
+            let amountText = amount === 'inkom' ? 'Inkom' : `Betaling voor: ${amount}`;
+            document.getElementById("amount-label").textContent = amountText;
+
+            document.getElementById("amounts").style.display = "none";
+            document.getElementById("qr-code").style.display = "block";
+        }
+
+        // Functie om terug naar de hoofdpagina te gaan
+        function backToHome() {
+            document.getElementById("amounts").style.display = "block";
+            document.getElementById("qr-code").style.display = "none";
+        }
+    </script>
+</body>
+</html>
